@@ -1,4 +1,4 @@
-### [155\. 最小栈](https://leetcode-cn.com/problems/min-stack/)
+/* ### [155\. 最小栈](https://leetcode-cn.com/problems/min-stack/)
 
 Difficulty: **简单**
 
@@ -43,55 +43,12 @@ Language: **全部题目**
 ```全部题目
 /**
  * initialize your data structure here.
- */
-var MinStack = function() {
-​
-};
-​
-/** 
- * @param {number} x
- * @return {void}
- */
-MinStack.prototype.push = function(x) {
-​
-};
-​
-/**
- * @return {void}
- */
-MinStack.prototype.pop = function() {
-​
-};
-​
-/**
- * @return {number}
- */
-MinStack.prototype.top = function() {
-​
-};
-​
-/**
- * @return {number}
- */
-MinStack.prototype.getMin = function() {
-​
-};
-​
-/**
- * Your MinStack object will be instantiated and called as such:
- * var obj = new MinStack()
- * obj.push(x)
- * obj.pop()
- * var param_3 = obj.top()
- * var param_4 = obj.getMin()
- */
-```
+ *
+*/
 
-/**
- * initialize your data structure here.
- */
 var MinStack = function() {
-
+  this.size = 0;
+  this._storage = {};
 };
 
 /** 
@@ -99,35 +56,79 @@ var MinStack = function() {
  * @return {void}
  */
 MinStack.prototype.push = function(x) {
-
+  var size = ++this.size;
+  this._storage[size] = x;
 };
 
 /**
  * @return {void}
  */
 MinStack.prototype.pop = function() {
-
+  var size = this.size,
+    deletedData;
+    if(size){
+      deletedData = this._storage[size]
+    
+      delete this._storage[size];
+      
+      this.size--;
+      
+    }
+    return deletedData;
 };
 
 /**
  * @return {number}
  */
 MinStack.prototype.top = function() {
-
+  var size = this.size
+  return this._storage[size]
 };
 
 /**
  * @return {number}
  */
 MinStack.prototype.getMin = function() {
-
+  var size = this.size
+  var data = Object.values(this._storage)
+  return Math.min.apply(null, data);
 };
 
-/**
- * Your MinStack object will be instantiated and called as such:
- * var obj = new MinStack()
- * obj.push(x)
- * obj.pop()
- * var param_3 = obj.top()
- * var param_4 = obj.getMin()
- */
+
+
+var MinStack = function() {
+  this.x_stack = [];
+  this.min_stack = [Infinity];
+};
+
+MinStack.prototype.push = function(x) {
+  this.x_stack.push(x);
+  this.min_stack.push(Math.min(this.min_stack[this.min_stack.length - 1], x));
+  console.log('this', this.min_stack)
+};
+
+MinStack.prototype.pop = function() {
+  this.x_stack.pop();
+  this.min_stack.pop();
+};
+
+MinStack.prototype.top = function() {
+  return this.x_stack[this.x_stack.length - 1];
+};
+
+MinStack.prototype.getMin = function() {
+  return this.min_stack[this.min_stack.length - 1];
+};
+
+
+var obj = new MinStack();
+obj.push(-2);
+obj.push(5);
+obj.push(-3);
+obj.pop();
+var param_3 = obj.top();
+console.log('param_3: ', param_3);
+var param_4 = obj.getMin()
+console.log('param_4: ', param_4);
+
+
