@@ -9,7 +9,6 @@ var addStrings = function(num1, num2) {
     u.push(i)
   }
   return u
-  
 };
 
 
@@ -25,8 +24,30 @@ num1 和num2 都不包含任何前导零
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。 */
 
 
+
+var  addStrings = (num1, num2)=> {
+  while (num1.length > num2.length) num2 = '0' + num2;
+  while (num1.length < num2.length) num1 = '0' + num1; // 先补0对齐
+
+  let res = "";
+  let carry = 0;
+  for(let i = num1.length -1; i >= 0; i--){
+    const sum  = +num1[i] +  +num2[i] + carry
+    res = sum % 10 + res;
+    carry = sum > 9 ? 1 : 0;
+  }
+
+  return carry == 1 ? '1' + res : res
+}
+
+
+
 var str1 = '23';
 var str2 = '34';
+
+
+
+
 
 var value = addStrings(str1, str2)
 console.log('value: ', value);
