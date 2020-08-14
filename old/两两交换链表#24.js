@@ -45,7 +45,7 @@ prev -> second -> first -> next
               .
               .
 移动指针:
-                   prev   first  second  next
+                    prev   first  second  next
           2    ->   1   ->  3  ->  4 -> null
               .
               .
