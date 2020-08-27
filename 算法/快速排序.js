@@ -9,7 +9,9 @@ Array.prototype.bubble_sort = function() {
 			}
 	return this;
 };
+
+
+
 var num = [22, 34, 3, 32, 82, 55, 89, 50, 37, 5, 64, 35, 9, 70];
-num.bubble_sort();
-for (var i = 0; i < num.length; i++)
-	document.body.innerHTML += num[i] + " ";
+var a = num.bubble_sort();
+console.log('a: ', a);
